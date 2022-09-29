@@ -65,6 +65,7 @@ const FeaturePost = () => {
   );
   return (
     <div className="mb-8">
+        <p className="px-4 text-3xl font-bold mb-3">Popular post</p>
         <Carousel infinite customLeftArrow={customLeftArrow} customRightArrow={customRightArrow} responsive={responsive} itemClass="px-4">
         {
           featuredPost.map((post:IPost) =>(

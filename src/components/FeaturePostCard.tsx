@@ -26,9 +26,8 @@ const FeaturePostCard = ({ post }: IProps) => {
           <img
             src={`https://source.unsplash.com/1600x900/?${post.id}`}
             alt={`${post.author}`}
-            height={30}
-            width={30}
-            className="align-middle drop-shadow-lg rounded-full"
+            
+            className="align-middle drop-shadow-lg rounded-full h-[30px] w-[30px]"
           />
           <p className="inline align-middle text-white text-shadow ml-2 font-medium">
             {post.author}

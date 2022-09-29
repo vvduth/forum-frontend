@@ -1,5 +1,9 @@
-* ms-auto: container in tailwind dose not center auto so put thi for it to center¨
+* mx-auto: container in tailwind dose not center auto so put thi for it to center¨
 * inlien-block: wrap the childre to prevent it extend beyong pareents
 
 * position: relative;
 An element with position: relative; is positioned relative to its normal position:
+
+
+* Use overflow-hidden to clip any content within an element that overflows the bounds of that element.
+if elem extend the borderit will be cutted

@@ -3,5 +3,6 @@ export interface IPost{
     postedAt: string,
     title: string,
     author: string,
-    category: string
+    category: string,
+    desc?: string,
   }
