@@ -1,0 +1,2 @@
+* ms-auto: container in tailwind dose not center auto so put thi for it to center¨
+* inlien-block: wrap the childre to prevent it extend beyong pareents
