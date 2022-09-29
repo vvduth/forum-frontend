@@ -1,4 +1,4 @@
-export const categories = [ 'football', 'gym', 'Web development', 'Blockchain']
+export const categories = [ 'football', 'gym', 'Web development','books', 'Blockchain']
 
 export const featuredPost = [
     {   
@@ -20,6 +20,20 @@ export const featuredPost = [
         postedAt: "Oct 09, 2022",
         title: "Best books to read in 2022",
         author: "Vasco",
-        category: "football"
+        category: "books"
     }, 
+    {
+        id : 4, 
+        postedAt: "Oct 11, 2022",
+        title: "How to do a pull up",
+        author: "Son",
+        category: "gym"
+    }, 
+    {
+        id : 5, 
+        postedAt: "Oct 11, 2022",
+        title: "Do you like to read?",
+        author: "Vasco",
+        category: "books"
+    },
 ]

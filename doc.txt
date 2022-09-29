@@ -1,2 +1,5 @@
 * ms-auto: container in tailwind dose not center auto so put thi for it to center¨
 * inlien-block: wrap the childre to prevent it extend beyong pareents
+
+* position: relative;
+An element with position: relative; is positioned relative to its normal position:

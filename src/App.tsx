@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import Layout from './components/Layout'
-
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import Header from "./components/Header";
+import Layout from "./components/Layout";
+import Homescreen from "./screens/Homescreen";
 
 function App() {
-  
-
   return (
-    <Layout>
-      
-    </Layout>
-  )
+    <>
+      <Header />
+      <Homescreen />
+    </>
+  );
 }
 
-export default App
+export default App;
