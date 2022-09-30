@@ -12,6 +12,7 @@ const PostCard = ({ post }: IProps) => {
         <img
           alt="post-pic"
           src={`https://source.unsplash.com/1600x900/?${post.category}`}
+          className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
         />
       </div>
 
@@ -24,7 +25,7 @@ const PostCard = ({ post }: IProps) => {
         <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
           <img
             alt="user-pic"
-            src={`https://source.unsplash.com/1600x900/?${post.id}`}
+            src={`https://source.unsplash.com/1600x1600/?${post.id}`}
             className="h-[30px] w-[30px] rounded-full align-middle"
           />
           <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
@@ -49,6 +50,14 @@ const PostCard = ({ post }: IProps) => {
           <span className="align-middle">{post.postedAt}</span>
         </div>
       </div>
+      <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
+        {post.desc}
+      </p>
+      <div className="text-center">
+      <a href={`/`}>
+        <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">Continue Reading</span>
+      </a>
+    </div>
     </div>
   );
 };
