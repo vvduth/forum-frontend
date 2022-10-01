@@ -36,7 +36,7 @@ const Header = () => {
             )}
           </button>
           <br />
-          <div className={`${toggle ? "flex" : "hidden"}`}>
+          <div className={`${toggle ? "flex" : "hidden"} md:hidden`}>
             <ul className="flex flex-col justify-end flex-1 items-end">
               {categories.map((category: string, i: number) => (
                 <li

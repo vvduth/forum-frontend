@@ -4,11 +4,18 @@ import Header from "./components/Header";
 import Layout from "./components/Layout";
 import Homescreen from "./screens/Homescreen";
 
+import { Routes, Route, Link } from "react-router-dom";
+import PostDetails from "./components/PostDetails";
+
 function App() {
   return (
     <>
       <Header />
-      <Homescreen />
+      <Routes>
+        <Route path="*" element={<Homescreen />} />
+        <Route path="/post/:id" element={<PostDetails /> }  />
+      </Routes>
+      
     </>
   );
 }

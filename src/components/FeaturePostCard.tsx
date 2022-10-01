@@ -7,7 +7,7 @@ interface IProps {
 
 const FeaturePostCard = ({ post }: IProps) => {
   return (
-    <div className="relative h-72">
+    <div className="relative h-72 cursor-pointer">
       <div
         className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-72"
         style={{
