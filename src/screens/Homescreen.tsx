@@ -5,6 +5,8 @@ import { IPost } from "../types/types";
 import PostCard from "../components/PostCard";
 import PostWidget from "../components/PostWidget";
 import Categories from "../components/Categories";
+import { Route } from "react-router-dom";
+import PostDetails from "../components/PostDetails";
 const Homescreen = () => {
   return (
     <div className="container mx-auto px-10 mb-8">
@@ -14,7 +16,8 @@ const Homescreen = () => {
 
           {featuredPost.map((post:IPost)=> (
             <PostCard key={post.id} post= {post} /> 
-          ))}
+            ))}
+
         </div>
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
