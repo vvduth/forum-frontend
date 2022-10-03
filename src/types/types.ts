@@ -6,3 +6,10 @@ export interface IPost{
     category: string,
     desc?: string,
   }
+
+
+  export interface IUser {
+    name: string, 
+    id: number, 
+    desc: string, 
+  }

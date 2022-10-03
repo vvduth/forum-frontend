@@ -1,4 +1,4 @@
-export const categories = [ 'football', 'gym', 'Web development','books', 'Blockchain']
+export const categories = [ 'Football', 'Gym', 'Web development','Books', 'Blockchain']
 
 export const featuredPost = [
     {   
@@ -41,4 +41,22 @@ export const featuredPost = [
         category: "books",
         desc: "This book list changed my life and enlightened my whole worldview to enjoy myself more."
     },
+]
+
+export const user = [
+    {
+        id: 1 , 
+        name: 'Duc Thai',
+        desc: 'Junior Software developer at Telia.'
+    },
+    {
+        id: 2 , 
+        name: 'Vasco',
+        desc: 'Back end developer'
+    },
+    {
+        id: 3 , 
+        name: 'Son',
+        desc: 'I am Son'
+    }
 ]
