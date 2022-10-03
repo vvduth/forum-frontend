@@ -1,4 +1,4 @@
-export const categories = [ 'Football', 'Gym', 'Web development','Books', 'Blockchain']
+export const categories = [ 'Football', 'Gym', 'Game','Books', 'Blockchain']
 
 export const featuredPost = [
     {   
@@ -14,7 +14,7 @@ export const featuredPost = [
         postedAt: "Oct 10, 2022",
         title: "Gym drills for higher speed at football",
         author: "Duc Thai",
-        category: "football",
+        category: "Football",
         desc: "Become faster, more technique and more explosive baller by doing these drills 2 times per week."
     }, 
     {
@@ -22,7 +22,7 @@ export const featuredPost = [
         postedAt: "Oct 09, 2022",
         title: "Best books to read in 2022",
         author: "Vasco",
-        category: "books",
+        category: "Books",
         desc: "This book list changed my life and enlightened my whole worldview to enjoy myself more."
     }, 
     {
@@ -30,7 +30,7 @@ export const featuredPost = [
         postedAt: "Oct 11, 2022",
         title: "How to do a pull up",
         author: "Son",
-        category: "gym",
+        category: "Gym",
         desc: "This book list changed my life and enlightened my whole worldview to enjoy myself more."
     }, 
     {
@@ -38,9 +38,17 @@ export const featuredPost = [
         postedAt: "Oct 11, 2022",
         title: "Do you like to read?",
         author: "Vasco",
-        category: "books",
+        category: "Books",
         desc: "This book list changed my life and enlightened my whole worldview to enjoy myself more."
     },
+    {
+        id : 6, 
+        postedAt: "Oct 12, 2022",
+        title: "Which item fits best for yasuo this season?",
+        author: "Son",
+        category: "Yasuo",
+        desc: "This book list changed my life and enlightened my whole worldview to enjoy myself more."
+    }, 
 ]
 
 export const user = [

@@ -6,6 +6,7 @@ import Homescreen from "./screens/Homescreen";
 
 import { Routes, Route, Link } from "react-router-dom";
 import PostDetails from "./components/PostDetails";
+import LoginScreen from "./screens/LoginScreen";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="*" element={<Homescreen />} />
         <Route path="/post/:id" element={<PostDetails /> }  />
+        <Route path="/login" element={<LoginScreen /> }  />
       </Routes>
       
     </>

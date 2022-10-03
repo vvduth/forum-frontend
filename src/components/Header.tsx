@@ -28,7 +28,7 @@ const Header = () => {
           <br />
         </div>
         <div className="hidden md:float-left md:contents text-white">
-          <a>
+          <a href="/login">
             <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
                Login
             </span>
@@ -58,7 +58,7 @@ const Header = () => {
                 </a>
               ))}
               <div className="flex m-2">
-              <a>
+              <a href="/login">
                 <span className="text-white font-semibold text-3xl cursor-pointer">
                    <AiOutlineLogin className="m-2"/> 
                 </span>

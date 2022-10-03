@@ -5,6 +5,8 @@ import PostWidget from "./PostWidget";
 import { featuredPost } from "../data/Dummy_data";
 import { IPost } from "../types/types";
 import Author from "./Author";
+import AdjacentPostCard from "./AdjacentPostCard";
+import Layout from "./Layout";
 
 const PostDetails = () => {
   const [post, setPost] = useState<IPost | null>(null);
@@ -20,10 +22,8 @@ const PostDetails = () => {
   }, [id]);
 
   return (
-    <div className="container mx-auto px-10 mb-8">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="col-span-1 lg:col-span-8">
-          <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
+    <Layout>
+      <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
             <div className="relative overflow-hidden shadow-md mb-6">
               <img
                 src={`https://source.unsplash.com/1600x900/?${post?.category}`}
@@ -77,16 +77,9 @@ const PostDetails = () => {
             </div>
           </div>
           <Author author = {post?.author}/> 
-        </div>
+          <AdjacentPostCard author = {post?.author} post={post} /> 
         
-        <div className="col-span-1 lg:col-span-4">
-          <div className="lg:sticky relative top-8">
-            <PostWidget />
-            <Categories />
-          </div>
-        </div>
-      </div>
-    </div>
+    </Layout>
   );
 };
 
