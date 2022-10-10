@@ -7,6 +7,7 @@ import { IPost } from "../types/types";
 import Author from "./Author";
 import AdjacentPostCard from "./AdjacentPostCard";
 import Layout from "./Layout";
+import CommentForm from "./CommentForm";
 
 const PostDetails = () => {
   const [post, setPost] = useState<IPost | null>(null);
@@ -78,7 +79,7 @@ const PostDetails = () => {
           </div>
           <Author author = {post?.author}/> 
           <AdjacentPostCard author = {post?.author} post={post} /> 
-        
+          <CommentForm /> 
     </Layout>
   );
 };

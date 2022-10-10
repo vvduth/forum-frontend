@@ -15,6 +15,11 @@ const LoginForm = () => {
           <label className="text-gray-500 cursor-pointer" htmlFor="storeData"> Save my name, email in this browser for the next time I comment.</label>
         </div>
       </div>
+      <div className="grid grid-cols-1 gap-4 mb-4">
+        <a>
+            <span className='text-gray-500 cursor-pointer hover:underline'>New to these stuff? Create new account</span>
+        </a>
+      </div>
     
       <div className="mt-8">
         <button type="button" onClick={() => {}} className="transition duration-500 ease hover:bg-indigo-900 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">Post Comment</button>
