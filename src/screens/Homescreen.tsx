@@ -6,6 +6,7 @@ import PostCard from "../components/PostCard";
 import { getPosts } from "../service";
 import { Route } from "react-router-dom";
 import useAuthStore from "../store/authStore";
+import { getPostsByUsername,sendLike, unLike } from "../service";
 import Layout from "../components/Layout";
 const Homescreen = () => {
   const {userProfile} = useAuthStore()  ; 
@@ -17,15 +18,37 @@ const Homescreen = () => {
     
     console.log(res) ;
   }
-
+  const getAllPostByUsername = async () => {
+    const {token } = userProfile as any
+    const res = await getPostsByUsername(token, "inatsuz") as any ; 
+    
+    console.log(res) ;
+  }
+  
+  const likePost = async () => {
+    const {token } = userProfile as any ;
+    const postId = "6344ac985528a0110caa399b";
+    const res = await sendLike(token, postId) as any ; 
+    console.log(res)
+  }
+  
+  const unLikePost = async () => {
+    const {token } = userProfile as any ;
+    const postId = "6344ac985528a0110caa399b";
+    const res = await unLike(token, postId) as any ; 
+    console.log(res)
+  }
+  
   useEffect(()=> {
-    fetchAllPost() ; 
+    getAllPostByUsername() ; 
     console.log(allPost)
   },[])
   return (
     
     <Layout>
       <> { allPost ? (<><p>Yes</p></>): (<><p>no</p></>)}</>
+      <button onClick={likePost}>Send Like </button>
+      <button onClick={unLikePost}>UnLike </button>
       {featuredPost.map((post:IPost)=> (
           <PostCard key={post.id} post= {post} /> 
             ))}

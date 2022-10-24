@@ -7,7 +7,7 @@ import useAuthStore from "../store/authStore";
 import menu from "../assets/menu.svg";
 const Header = () => {
   const [toggle, setToggle] = useState(false);
-  const {userProfile} = useAuthStore()
+  const {userProfile, removeUser} = useAuthStore() as any; 
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="border-b w-full inline-block border-blue-400 py-8">
@@ -29,15 +29,15 @@ const Header = () => {
           </button>
           <br />
         </div>
-        <div className="hidden md:float-left md:contents text-white">
+        <div  className="hidden md:float-left md:contents text-white">
           <a href="/login">
-            <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
-            {userProfile ? ("Logged in") : (<></>)}
+            <span onClick={removeUser} className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
+            {userProfile ? ("Logged out") : (<></>)}
             </span>
           </a>
           <a>
             <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
-              {userProfile ? ("") : (<></>)}
+              {userProfile ? (<>Hello {userProfile!.name}</>) : (<></>)}
             </span>
           </a>
           {/* {categories.map((category: any, index: number) => (
