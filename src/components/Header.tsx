@@ -3,9 +3,11 @@ import { categories } from "../data/Dummy_data";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineCloseCircle ,AiOutlineLogin } from "react-icons/ai";
 import {SiGnuprivacyguard} from 'react-icons/si'
+import useAuthStore from "../store/authStore";
 import menu from "../assets/menu.svg";
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const {userProfile} = useAuthStore()
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="border-b w-full inline-block border-blue-400 py-8">
@@ -30,21 +32,21 @@ const Header = () => {
         <div className="hidden md:float-left md:contents text-white">
           <a href="/login">
             <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
-               Login
+            {userProfile ? ("Logged in") : (<></>)}
             </span>
           </a>
           <a>
             <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
-              Sign up
+              {userProfile ? ("") : (<></>)}
             </span>
           </a>
-          {categories.map((category: any, index: number) => (
+          {/* {categories.map((category: any, index: number) => (
             <a key={index}>
               <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer">
                 {category}
               </span>
             </a>
-          ))}
+          ))} */}
         </div>
 
         <div>

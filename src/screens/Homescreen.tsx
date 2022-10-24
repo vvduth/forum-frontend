@@ -5,14 +5,17 @@ import { IPost } from "../types/types";
 import PostCard from "../components/PostCard";
 import { getPosts } from "../service";
 import { Route } from "react-router-dom";
-
+import useAuthStore from "../store/authStore";
 import Layout from "../components/Layout";
 const Homescreen = () => {
+  const {userProfile} = useAuthStore()  ; 
+  
   const [allPost, setAllPost] = useState<any>(null) ; 
   const fetchAllPost = async () => {
-    const res = await getPosts() as any ; 
-    setAllPost(res[0]) ;
-    console.log(res[0])
+    const {token } = userProfile as any
+    const res = await getPosts(token) as any ; 
+    
+    console.log(res) ;
   }
 
   useEffect(()=> {

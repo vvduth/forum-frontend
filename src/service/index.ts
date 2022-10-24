@@ -1,35 +1,46 @@
-import { request, gql } from "graphql-request";
+import { request, gql, GraphQLClient } from "graphql-request";
 
-const graphqlAPI = `https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cl99wxkjm2rpc01ue0ugb8gsu/master`;
+const graphqlAPI = `https://tamk-fullstack-project-backend.herokuapp.com/graphql`;
 
-export const getPosts = async () => {
+
+export const getPosts = async (userProfile: any) => {
+  const config = {
+    headers : {
+      Authorization : `Bearer ${userProfile}`
+    }
+  }
+
+  const graphQLClient = new GraphQLClient(graphqlAPI, config)
   const query = gql`
-    query MyQuery {
-      postsConnection {
-        edges {
-          node {
-            author {
-              bio
-              name
-              id
-              photo {
-                url
-              }
-            }
-            createdAt
-            slug
-            excerpt
-            name
-            categories {
-                name
-                slug
-            }
-          }
+    query {
+      getAllPosts {
+        id
+        title
+        message
+        createdAt
+        user {
+          id
+          username
+          email
         }
+        comments {
+          message
+          user {
+            username
+          }
+          createdAt
+        }
+        likes {
+          id
+          username
+          email
+        }
+        numLikes
+        numComments
       }
     }
   `;
-  const result = await request(graphqlAPI, query);
+  const result = await graphQLClient.request(query);
 
-  return result.postsConnection.edges;
+  return result;
 };
