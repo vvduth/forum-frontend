@@ -16,6 +16,7 @@ export const getPosts = async (token: any) => {
         id
         title
         message
+        category
         createdAt
         user {
           id
@@ -36,6 +37,7 @@ export const getPosts = async (token: any) => {
         }
         numLikes
         numComments
+        
       }
     }
   `;

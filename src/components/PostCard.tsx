@@ -1,11 +1,11 @@
 import React from "react";
-
+import { AiFillLike } from "react-icons/ai";
 import { IPost } from "../types/types";
 
 interface IProps {
   post: IPost;
 }
-const PostCard = ({ post }: IProps) => {
+const PostCard = ({ post }: any) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md pb-80 mb-6">
@@ -29,7 +29,7 @@ const PostCard = ({ post }: IProps) => {
             className="h-[30px] w-[30px] rounded-full align-middle"
           />
           <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-            {post.author}
+            {post.user.username}
           </p>
         </div>
         <div className="font-medium text-gray-700">
@@ -47,17 +47,28 @@ const PostCard = ({ post }: IProps) => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          <span className="align-middle">{post.postedAt}</span>
+          <span className="align-middle">{post.createdAt}</span>
         </div>
       </div>
       <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
         {post.desc}
       </p>
       <div className="text-center">
-      <a href={`/post/${post.id}`}>
-        <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">Continue Reading</span>
-      </a>
-    </div>
+        <p className="inline-block align-middle text-gray-700 ml-2 font-medium text-lg">
+          {post.numLikes}
+        </p>
+        <p className="inline-block align-middle text-gray-700 ml-2 font-medium text-lg">
+          <AiFillLike />
+        </p>
+      </div>
+      <br />
+      <div className="text-center">
+        <a href={`/post/${post.id}`}>
+          <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">
+            Continue Reading
+          </span>
+        </a>
+      </div>
     </div>
   );
 };

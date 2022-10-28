@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { categories } from "../data/Dummy_data";
 import { AiOutlineMenu } from "react-icons/ai";
-import { AiOutlineCloseCircle ,AiOutlineLogin } from "react-icons/ai";
-import {SiGnuprivacyguard} from 'react-icons/si'
+import { AiOutlineCloseCircle, AiOutlineLogin } from "react-icons/ai";
+import { SiGnuprivacyguard } from "react-icons/si";
 import useAuthStore from "../store/authStore";
 import menu from "../assets/menu.svg";
 const Header = () => {
   const [toggle, setToggle] = useState(false);
-  const {userProfile, removeUser} = useAuthStore() as any; 
+  const { userProfile, removeUser } = useAuthStore() as any;
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="border-b w-full inline-block border-blue-400 py-8">
@@ -29,15 +29,18 @@ const Header = () => {
           </button>
           <br />
         </div>
-        <div  className="hidden md:float-left md:contents text-white">
+        <div className="hidden md:float-left md:contents text-white">
           <a href="/login">
-            <span onClick={removeUser} className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
-            {userProfile ? ("Logged out") : (<></>)}
+            <span
+              onClick={removeUser}
+              className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white"
+            >
+              {userProfile ? "Logged out" : <></>}
             </span>
           </a>
           <a>
             <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
-              {userProfile ? (<>Hello {userProfile!.name}</>) : (<></>)}
+              {userProfile ? <>Hello {userProfile!.name}</> : <></>}
             </span>
           </a>
           {/* {categories.map((category: any, index: number) => (
@@ -47,6 +50,20 @@ const Header = () => {
               </span>
             </a>
           ))} */}
+          {!userProfile && (
+            <>
+              <a href="/login">
+                <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer">
+                  Login
+                </span>
+              </a>
+              <a href="/signup">
+                <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer">
+                  Sign up
+                </span>
+              </a>
+            </>
+          )}
         </div>
 
         <div>
@@ -60,16 +77,16 @@ const Header = () => {
                 </a>
               ))}
               <div className="flex m-2">
-              <a href="/login">
-                <span className="text-white font-semibold text-3xl cursor-pointer">
-                   <AiOutlineLogin className="m-2"/> 
-                </span>
-              </a>
-              <a>
-                <span className="text-white font-semibold text-3xl cursor-pointer">
-                  <SiGnuprivacyguard className="m-2" /> 
-                </span> 
-              </a>
+                <a href="/login">
+                  <span className="text-white font-semibold text-3xl cursor-pointer">
+                    <AiOutlineLogin className="m-2" />
+                  </span>
+                </a>
+                <a>
+                  <span className="text-white font-semibold text-3xl cursor-pointer">
+                    <SiGnuprivacyguard className="m-2" />
+                  </span>
+                </a>
               </div>
             </ul>
           </div>
