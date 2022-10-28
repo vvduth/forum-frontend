@@ -43,6 +43,11 @@ const Header = () => {
               {userProfile ? <>Hello {userProfile!.name}</> : <></>}
             </span>
           </a>
+          <a href="/createPost">
+            <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer border-b border-white">
+              {userProfile ? <>Create Post</> : <></>}
+            </span>
+          </a>
           {/* {categories.map((category: any, index: number) => (
             <a key={index}>
               <span className="md:float-right mt-2 align-middle ml-4 font-semibold cursor-pointer">

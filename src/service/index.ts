@@ -37,7 +37,6 @@ export const getPosts = async (token: any) => {
         }
         numLikes
         numComments
-        
       }
     }
   `;
@@ -163,6 +162,32 @@ export const unLike = async (token: any, postId: any) => {
     }
   `;
   const result = await graphQLClient.request(query, { postId });
+
+  return result;
+};
+
+export const createPost = async (token: any, title: any, category: any, content: any) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const graphQLClient = new GraphQLClient(graphqlAPI, config);
+  const query = gql`
+    mutation  createPost($title: String!, $category: String!, $content: String!){
+      createPost(
+        postInput: {
+          title: $title
+          message: $content
+          category: $category
+        }
+      ) {
+        title
+      }
+    }
+  `;
+  const result = await graphQLClient.request(query, { title, content, category });
 
   return result;
 };

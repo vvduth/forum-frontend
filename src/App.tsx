@@ -9,6 +9,8 @@ import PostDetails from "./components/PostDetails";
 import LoginScreen from "./screens/LoginScreen";
 import SignupForm from "./components/SignupForm";
 import SignupScreen from "./screens/SignupScreen";
+import CreatePostForm from "./components/CreatePostForm";
+import CreatePostScreen from "./screens/CreatePostScreen";
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path="/post/:id" element={<PostDetails /> }  />
         <Route path="/login" element={<LoginScreen /> }  />
         <Route path="/signup" element={<SignupScreen/>} />
+        <Route path="/createPost" element={<CreatePostScreen />} /> 
       </Routes>
       
     </>

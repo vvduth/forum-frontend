@@ -1,5 +1,6 @@
 import React from "react";
 import { AiFillLike } from "react-icons/ai";
+import {BiComment} from "react-icons/bi"
 import { IPost } from "../types/types";
 
 interface IProps {
@@ -51,7 +52,7 @@ const PostCard = ({ post }: any) => {
         </div>
       </div>
       <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
-        {post.desc}
+        {post.message}
       </p>
       <div className="text-center">
         <p className="inline-block align-middle text-gray-700 ml-2 font-medium text-lg">
@@ -59,6 +60,14 @@ const PostCard = ({ post }: any) => {
         </p>
         <p className="inline-block align-middle text-gray-700 ml-2 font-medium text-lg">
           <AiFillLike />
+        </p>
+      </div>
+      <div className="text-center">
+        <p className="inline-block align-middle text-gray-700 ml-2 font-medium text-lg">
+          {post.numComments}
+        </p>
+        <p className="inline-block align-middle text-gray-700 ml-2 font-medium text-lg">
+          <BiComment />
         </p>
       </div>
       <br />
