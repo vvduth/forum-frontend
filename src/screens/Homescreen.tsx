@@ -76,8 +76,8 @@ const Homescreen = () => {
   }, []);
   return (
     <Layout>
-      <button onClick={likePost}>Send Like </button>
-      <button onClick={unLikePost}>UnLike </button>
+      {/* <button onClick={likePost}>Send Like </button>
+      <button onClick={unLikePost}>UnLike </button> */}
       {allPost && <></>}
       {allPost && (
         <>

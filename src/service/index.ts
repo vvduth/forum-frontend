@@ -166,7 +166,12 @@ export const unLike = async (token: any, postId: any) => {
   return result;
 };
 
-export const createPost = async (token: any, title: any, category: any, content: any) => {
+export const createPost = async (
+  token: any,
+  title: any,
+  category: any,
+  content: any
+) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -175,19 +180,112 @@ export const createPost = async (token: any, title: any, category: any, content:
 
   const graphQLClient = new GraphQLClient(graphqlAPI, config);
   const query = gql`
-    mutation  createPost($title: String!, $category: String!, $content: String!){
+    mutation createPost(
+      $title: String!
+      $category: String!
+      $content: String!
+    ) {
       createPost(
-        postInput: {
-          title: $title
-          message: $content
-          category: $category
-        }
+        postInput: { title: $title, message: $content, category: $category }
       ) {
         title
       }
     }
   `;
-  const result = await graphQLClient.request(query, { title, content, category });
+  const result = await graphQLClient.request(query, {
+    title,
+    content,
+    category,
+  });
+
+  return result;
+};
+
+export const getOnePostById = async (token: any, postId: any) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const graphQLClient = new GraphQLClient(graphqlAPI, config);
+  const query = gql`
+    query postById($postId: ID!) {
+      getPostById(postId: $postId) {
+        id
+        title
+        message
+        createdAt
+        user {
+          id
+          username
+          email
+          bio
+        }
+        comments {
+          message
+          user {
+            username
+          }
+          createdAt
+        }
+        likes {
+          id
+          username
+          email
+        }
+        numLikes
+        numComments
+        category
+      }
+    }
+  `;
+
+const result = await graphQLClient.request(query, {
+  postId
+});
+
+return result;
+};
+
+
+export const sendComment = async (token: any, postId: any, message: any) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const graphQLClient = new GraphQLClient(graphqlAPI, config);
+  const query = gql`
+    mutation sendComment($postId: ID!, $message: String!) {
+      addComment(commentInput:{message:$message, postId:$postId}){
+    id
+    title
+    message
+    createdAt
+    user {
+      id
+      username
+      email
+    }
+    comments {
+        message
+        user {
+            username
+        }
+        createdAt
+    }
+    likes {
+      id
+      username
+      email
+    }
+    numLikes
+    numComments
+  }
+    }
+  `;
+  const result = await graphQLClient.request(query, { postId, message });
 
   return result;
 };
