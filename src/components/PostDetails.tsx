@@ -10,29 +10,50 @@ import Layout from "./Layout";
 import CommentForm from "./CommentForm";
 import { getOnePostById } from "../service";
 import useAuthStore from "../store/authStore";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { sendLike, unLike } from "../service";
 import Comments from "./Comments";
 const PostDetails = () => {
   const [post, setPost] = useState<any | null>(null);
   const { userProfile } = useAuthStore() as any;
   const id = useParams();
-
-
+  const [isLike, setIsLike] = useState<any>();
+  const [likes, setLikes] = useState<any>() ;
+  useEffect(() => {}, []);
 
   const getOnePost = async () => {
-    
     try {
       const res = await getOnePostById(userProfile.token, id.id);
 
-      setPost(res.getPostById)
-      console.log(res.getPostById)
+      setPost(res.getPostById);
+      console.log(res.getPostById);
+
+      const temp = res.getPostById.likes.find((elem: any) => {
+        return elem.username === userProfile.name;
+      });
+      setIsLike(!!temp);
+      setLikes(res.getPostById.numLikes) ; 
+      console.log("not not temp ", !!temp);
     } catch (e) {
       console.log(e);
     }
   };
+  
+  const Likehandler = async () => {
+    if (isLike) {
+      setIsLike(!isLike);
+      setLikes(likes - 1)
+      await unLike(userProfile.token, id.id) ;
+    } else {
+      setIsLike(!isLike);
+      setLikes(likes + 1 ) ;
+      await sendLike(userProfile.token, id.id)
+
+    }
+  }
 
   useEffect(() => {
-    getOnePost() ;
-   
+    getOnePost();
   }, [id]);
 
   return (
@@ -72,23 +93,28 @@ const PostDetails = () => {
                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                 />
               </svg>
-              <span className="align-middle">{post?.postedAt}</span>
+              <span className="align-middle">{post?.createdAt}</span>
             </div>
+            {isLike ? (<AiFillLike onClick={Likehandler} className="h-6 w-6 inline mr-2 ml-3 text-pink-500"/>) :(<AiOutlineLike className="h-6 w-6 inline mr-2 ml-3 text-pink-500" onClick={Likehandler}/> )}
+            {likes}
           </div>
           <h1 className="mb-8 text-3xl font-semibold">{post?.title}</h1>
-          <p className="mb-8">
-            {post?.message}
-          </p>
+          <p className="mb-8">{post?.message}</p>
         </div>
+       
       </div>
       <Author author={post?.user} />
       <AdjacentPostCard author={post?.user.username} post={post} />
       {post && post?.comments ? (
-        <>{post?.comments.map((comment:any) =>(
-          <Comments key = {comment.id} comment={comment}/> 
-        ))}</>
-      ) : (<></>)}
-      <CommentForm postId = {id.id} refreshPostCallback = {getOnePost}/>
+        <>
+          {post?.comments.map((comment: any) => (
+            <Comments key={comment.id} comment={comment} />
+          ))}
+        </>
+      ) : (
+        <></>
+      )}
+      <CommentForm postId={id.id} refreshPostCallback={getOnePost} />
     </Layout>
   );
 };
