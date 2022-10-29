@@ -57,7 +57,6 @@ const LoginForm = () => {
       <div className="grid grid-cols-1 gap-4 mb-4">
         <div>
           <input
-            checked={true}
             onChange={() => {}}
             type="checkbox"
             id="storeData"
