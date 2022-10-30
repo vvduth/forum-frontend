@@ -12,7 +12,7 @@ export const getPosts = async (token: any) => {
   const graphQLClient = new GraphQLClient(graphqlAPI, config);
   const query = gql`
     query {
-      getAllPosts(amount: 5) {
+      getAllPosts{
         id
         title
         message
@@ -45,6 +45,49 @@ export const getPosts = async (token: any) => {
   return result;
 };
 
+
+export const getPostsWithPagination = async (token: any) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const graphQLClient = new GraphQLClient(graphqlAPI, config);
+  const query = gql`
+    query {
+      getAllPosts(amount: 5) {
+        id
+        title
+        message
+        category
+        createdAt
+        user {
+          id
+          username
+          email
+        }
+        comments {
+          message
+          user {
+            username
+          }
+          createdAt
+        }
+        likes {
+          id
+          username
+          email
+        }
+        numLikes
+        numComments
+      }
+    }
+  `;
+  const result = await graphQLClient.request(query);
+
+  return result;
+};
 export const getTopPosts = async (token: any) => {
   const config = {
     headers: {

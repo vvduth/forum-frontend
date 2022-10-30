@@ -1,13 +1,16 @@
 import React from 'react'
 import { featuredPost } from '../data/Dummy_data'
 import { IPost } from '../types/types'
+import { useStateContext } from '../context/ContextProvider'
 const PostWidget = () => {
+    const {topPosts} = useStateContext() as any ; 
   return (
-    <div className='bg-white shadow-lg rounded-lg p-8 pb-12 mb-8'> 
+   <>
+    {topPosts ? ( <div className='bg-white shadow-lg rounded-lg p-8 pb-12 mb-8'> 
         <h3 className='text-xl mb-8 font-semibold border-b border-blue-500 pb-4' >
             Recent Posts
         </h3>
-        {featuredPost.slice(0,3).map((post: IPost) => (
+        {topPosts.slice(0,3).map((post: IPost) => (
             <div key={post.id} className="flex items-center w-full mb-4">
                 <div className='w-16 flex-none'>
                     <img 
@@ -23,7 +26,10 @@ const PostWidget = () => {
                 </div>
             </div>
         ))}
-    </div>
+    </div>): (
+        <></>
+    )}
+   </>
   )
 }
 

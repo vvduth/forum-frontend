@@ -30,7 +30,7 @@ const FeaturePost = () => {
   const {userProfile} = useAuthStore() as any  ;
   const fetchTopPosts = async () => {
     const res = await getTopPosts(userProfile.token) ; 
-    console.log(res) ;
+    
     setTopPost(res.getTopPosts) ;
   }
 

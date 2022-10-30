@@ -11,10 +11,10 @@ import SignupForm from "./components/SignupForm";
 import SignupScreen from "./screens/SignupScreen";
 import CreatePostForm from "./components/CreatePostForm";
 import CreatePostScreen from "./screens/CreatePostScreen";
-
+import { ContextProvider } from "./context/ContextProvider";
 function App() {
   return (
-    <>
+    <ContextProvider>
       <Header />
       <Routes>
         <Route path="*" element={<Homescreen />} />
@@ -24,7 +24,7 @@ function App() {
         <Route path="/createPost" element={<CreatePostScreen />} /> 
       </Routes>
       
-    </>
+    </ContextProvider>
   );
 }
 

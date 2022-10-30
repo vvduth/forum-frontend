@@ -9,82 +9,65 @@ import { Route } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import { getPostsByUsername, sendLike, unLike } from "../service";
 import Layout from "../components/Layout";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import Stack from "@mui/material/Stack";
+import usePagination from "../hook/usePagination";
+import { useStateContext } from "../context/ContextProvider";
 
-import {
-  GridComponent,
-  ColumnsDirective,
-  ColumnDirective,
-  Resize,
-  Sort,
-  ContextMenu,
-  Filter,
-  Page,
-  ExcelExport,
-  PdfExport,
-  Edit,
-  Inject,
-  Search,
-  Toolbar,
-} from "@syncfusion/ej2-react-grids";
-import Pagination from "../components/Pagination";
+
 let PageSize = 5;
 
 const Homescreen = () => {
   const { userProfile } = useAuthStore();
-
-  const [allPost, setAllPost] = useState<any>(null);
+  const {allPost, setAllPosts} = useStateContext() as any ;
+ 
   const [currentPage, setCurrentPage] = useState(1);
+  const [lengthAllPost, setLengthAllPost] = useState(0);
+  const [pagesCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(1);
 
-  const fetchAllPost = async () => {
-    const { token } = userProfile as any;
-    const res = (await getPosts(token)) as any;
-    setAllPost(res.getAllPosts);
-    console.log(res);
-  };
-  const currentTableData = useMemo(() => {
-    if (allPost) {
-      const firstPageIndex = (currentPage - 1) * PageSize;
-      const lastPageIndex = firstPageIndex + PageSize;
-      return allPost.slice(firstPageIndex, lastPageIndex);
-    }
-  }, [currentPage]);
+  const [count, setCount] = useState(0);
+  const [paginatedData, setPaginatedData] = useState<any>();
+  const PER_PAGE = 5;
 
-  const getAllPostByUsername = async () => {
-    const { token } = userProfile as any;
-    const res = (await getPostsByUsername(token, "inatsuz")) as any;
+  
+  // const count = Math.ceil(allPost.length / PER_PAGE);
+  
 
-    console.log(res);
+  const handleChange = (e: any, p: any) => {
+    setPage(p);
+    paginatedData.jump(p);
   };
 
-  const likePost = async () => {
-    const { token } = userProfile as any;
-    const postId = "6344ac985528a0110caa399b";
-    const res = (await sendLike(token, postId)) as any;
-    console.log(res);
-  };
+ 
+  const paginateDaTa = () => {
+    
+  }
 
-  const unLikePost = async () => {
-    const { token } = userProfile as any;
-    const postId = "6344ac985528a0110caa399b";
-    const res = (await unLike(token, postId)) as any;
-    console.log(res);
-  };
-
+ 
   useEffect(() => {
-    fetchAllPost();
-    console.log(allPost);
-  }, []);
+      console.log("from context", allPost)
+      setPaginatedData(allPost) ;
+  }, [allPost]);
   return (
     <Layout>
       {/* <button onClick={likePost}>Send Like </button>
       <button onClick={unLikePost}>UnLike </button> */}
-      {allPost && <></>}
-      {allPost && (
+      {paginatedData && <></>}
+      {paginatedData && (
         <>
-          {allPost.map((post: any) => (
+          {paginatedData.map((post: any) => (
             <PostCard key={post.id} post={post} />
           ))}
-         
+          <Pagination
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
         </>
       )}
     </Layout>
