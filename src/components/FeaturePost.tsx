@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { featuredPost } from "../data/Dummy_data";
 import FeaturePostCard from "./FeaturePostCard";
-
+import { getTopPosts } from "../service";
 import { IPost } from "../types/types";
-
+import useAuthStore from "../store/authStore";
 
 const responsive = {
   superLargeDesktop: {
@@ -26,6 +26,17 @@ const responsive = {
   },
 };
 const FeaturePost = () => {
+  const [topPosts, setTopPost] = useState<any>() ;
+  const {userProfile} = useAuthStore() as any  ;
+  const fetchTopPosts = async () => {
+    const res = await getTopPosts(userProfile.token) ; 
+    console.log(res) ;
+    setTopPost(res.getTopPosts) ;
+  }
+
+  useEffect(() => {
+    fetchTopPosts() ; 
+  },[])
   const customLeftArrow = (
     <div className="absolute arrow-btn left-0 text-center py-3 cursor-pointer bg-pink-600 rounded-full">
       <svg
@@ -66,13 +77,20 @@ const FeaturePost = () => {
   return (
     <div className="mb-8">
         <p className="px-4 text-3xl text-white font-bold mb-3">Popular post</p>
-        <Carousel infinite customLeftArrow={customLeftArrow} customRightArrow={customRightArrow} responsive={responsive} itemClass="px-4">
-        {
-          featuredPost.map((post:IPost) =>(
-            <FeaturePostCard key={post.id} post={post}/>
-          ))
-        }
-        </Carousel>
+        {topPosts ? (
+          <Carousel infinite customLeftArrow={customLeftArrow} customRightArrow={customRightArrow} responsive={responsive} itemClass="px-4">
+          {
+            topPosts.map((post:IPost) =>(
+              <FeaturePostCard key={post.id} post={post}/>
+            ))
+          }
+          </Carousel>
+        ): (
+          <div>
+              Please log in to be able to see this.
+
+          </div>
+        )}
     </div>
   );
 };

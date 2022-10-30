@@ -12,7 +12,7 @@ export const getPosts = async (token: any) => {
   const graphQLClient = new GraphQLClient(graphqlAPI, config);
   const query = gql`
     query {
-      getAllPosts {
+      getAllPosts(amount: 5) {
         id
         title
         message
@@ -45,6 +45,48 @@ export const getPosts = async (token: any) => {
   return result;
 };
 
+export const getTopPosts = async (token: any) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const graphQLClient = new GraphQLClient(graphqlAPI, config);
+  const query = gql`
+    query {
+      getTopPosts(amount: 5) {
+        id
+        title
+        message
+        category
+        createdAt
+        user {
+          id
+          username
+          email
+        }
+        comments {
+          message
+          user {
+            username
+          }
+          createdAt
+        }
+        likes {
+          id
+          username
+          email
+        }
+        numLikes
+        numComments
+      }
+    }
+  `;
+  const result = await graphQLClient.request(query);
+
+  return result;
+};
 export const getPostsByUsername = async (token: any, username: any) => {
   const config = {
     headers: {
@@ -240,13 +282,12 @@ export const getOnePostById = async (token: any, postId: any) => {
     }
   `;
 
-const result = await graphQLClient.request(query, {
-  postId
-});
+  const result = await graphQLClient.request(query, {
+    postId,
+  });
 
-return result;
+  return result;
 };
-
 
 export const sendComment = async (token: any, postId: any, message: any) => {
   const config = {
@@ -258,31 +299,31 @@ export const sendComment = async (token: any, postId: any, message: any) => {
   const graphQLClient = new GraphQLClient(graphqlAPI, config);
   const query = gql`
     mutation sendComment($postId: ID!, $message: String!) {
-      addComment(commentInput:{message:$message, postId:$postId}){
-    id
-    title
-    message
-    createdAt
-    user {
-      id
-      username
-      email
-    }
-    comments {
+      addComment(commentInput: { message: $message, postId: $postId }) {
+        id
+        title
         message
-        user {
-            username
-        }
         createdAt
-    }
-    likes {
-      id
-      username
-      email
-    }
-    numLikes
-    numComments
-  }
+        user {
+          id
+          username
+          email
+        }
+        comments {
+          message
+          user {
+            username
+          }
+          createdAt
+        }
+        likes {
+          id
+          username
+          email
+        }
+        numLikes
+        numComments
+      }
     }
   `;
   const result = await graphQLClient.request(query, { postId, message });

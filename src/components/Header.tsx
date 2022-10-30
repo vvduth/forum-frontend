@@ -3,6 +3,7 @@ import { categories } from "../data/Dummy_data";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineCloseCircle, AiOutlineLogin } from "react-icons/ai";
 import { SiGnuprivacyguard } from "react-icons/si";
+import {MdOutlineCreateNewFolder} from 'react-icons/md'
 import useAuthStore from "../store/authStore";
 import menu from "../assets/menu.svg";
 const Header = () => {
@@ -87,9 +88,14 @@ const Header = () => {
                     <AiOutlineLogin className="m-2" />
                   </span>
                 </a>
-                <a>
+                <a href="/signup">
                   <span className="text-white font-semibold text-3xl cursor-pointer">
                     <SiGnuprivacyguard className="m-2" />
+                  </span>
+                </a>
+                <a href="/createPost">
+                  <span className="text-white font-semibold text-3xl cursor-pointer">
+                    <MdOutlineCreateNewFolder className="m-2" />
                   </span>
                 </a>
               </div>
