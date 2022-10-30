@@ -86,7 +86,7 @@ const FeaturePost = () => {
           }
           </Carousel>
         ): (
-          <div>
+          <div className="text-xl text-white mb-11 px-4">
               Please log in to be able to see this.
 
           </div>
