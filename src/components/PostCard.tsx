@@ -48,7 +48,7 @@ const PostCard = ({ post }: any) => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          <span className="align-middle">{post.createdAt}</span>
+          <span className="align-middle">{post.createdAt.slice(0,10)} </span>
         </div>
       </div>
       <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">

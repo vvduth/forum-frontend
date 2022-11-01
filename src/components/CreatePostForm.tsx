@@ -10,16 +10,20 @@ import {
 } from "@syncfusion/ej2-react-richtexteditor";
 import { createPost } from '../service';
 import useAuthStore from '../store/authStore';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePostForm = () => {
   const [title, setTitle] = useState("") ; 
   const [content, setContent] = useState("") ; 
   const [tag, setTag] = useState("") ;
+  const navigate = useNavigate() ; 
 
  const {userProfile} = useAuthStore() as any; 
   const createPosthandler = async () => {
     try {
        await createPost(userProfile.token, title, tag, content ) 
+       navigate("/", {replace: true}) ;
+
     } catch(e) {
       console.log(e)
     }
