@@ -11,7 +11,8 @@ const PostWidget = () => {
             Recent Posts
         </h3>
         {topPosts.slice(0,3).map((post: IPost) => (
-            <div key={post.id} className="flex items-center w-full mb-4">
+           <a href={`/post/${post.id}`}>
+             <div key={post.id} className="flex items-center w-full mb-4">
                 <div className='w-16 flex-none'>
                     <img 
                         src={`https://source.unsplash.com/1600x900/?${post.category}`}
@@ -25,6 +26,7 @@ const PostWidget = () => {
                     <p className='text-md'>{post.title}</p>
                 </div>
             </div>
+           </a>
         ))}
     </div>): (
         <></>

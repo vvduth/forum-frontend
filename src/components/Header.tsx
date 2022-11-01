@@ -93,11 +93,13 @@ const Header = () => {
                     <SiGnuprivacyguard className="m-2" />
                   </span>
                 </a>
-                <a href="/createPost">
+                {userProfile && (
+                  <a href="/createPost">
                   <span className="text-white font-semibold text-3xl cursor-pointer">
                     <MdOutlineCreateNewFolder className="m-2" />
                   </span>
                 </a>
+                )}
               </div>
             </ul>
           </div>

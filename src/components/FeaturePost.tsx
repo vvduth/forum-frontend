@@ -26,17 +26,17 @@ const responsive = {
   },
 };
 const FeaturePost = () => {
-  const [topPosts, setTopPost] = useState<any>() ;
-  const {userProfile} = useAuthStore() as any  ;
+  const [topPosts, setTopPost] = useState<any>();
+  const { userProfile } = useAuthStore() as any;
   const fetchTopPosts = async () => {
-    const res = await getTopPosts(userProfile.token) ; 
-    
-    setTopPost(res.getTopPosts) ;
-  }
+    const res = await getTopPosts(userProfile.token);
+
+    setTopPost(res.getTopPosts);
+  };
 
   useEffect(() => {
-    fetchTopPosts() ; 
-  },[])
+    fetchTopPosts();
+  }, []);
   const customLeftArrow = (
     <div className="absolute arrow-btn left-0 text-center py-3 cursor-pointer bg-pink-600 rounded-full">
       <svg
@@ -76,21 +76,36 @@ const FeaturePost = () => {
   );
   return (
     <div className="mb-8">
-        <p className="px-4 text-3xl text-white font-bold mb-3">Popular post</p>
-        {topPosts ? (
-          <Carousel infinite customLeftArrow={customLeftArrow} customRightArrow={customRightArrow} responsive={responsive} itemClass="px-4">
-          {
-            topPosts.map((post:IPost) =>(
-              <FeaturePostCard key={post.id} post={post}/>
-            ))
-          }
-          </Carousel>
-        ): (
-          <div className="text-xl text-white mb-11 px-4">
-              Please log in to be able to see this.
-
-          </div>
-        )}
+      <p className="px-4 text-3xl text-white font-bold mb-3">Popular post</p>
+      {!userProfile && (
+        <div className="text-xl text-white mb-11 px-4">
+          Please log in or create an account to see all the posts
+        </div>
+      ) }
+      {topPosts && userProfile ? (
+        <Carousel
+          infinite
+          customLeftArrow={customLeftArrow}
+          customRightArrow={customRightArrow}
+          responsive={responsive}
+          itemClass="px-4"
+        >
+          {topPosts.map((post: IPost) => (
+            <FeaturePostCard key={post.id} post={post} />
+          ))}
+        </Carousel>
+      ) : (
+        <div className="text-xl text-white mb-11 px-4">
+          
+        </div>
+      )}
+      {userProfile && !topPosts ? (
+        <div className="text-xl text-white mb-11 px-4">
+          Loading, please wait ...
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

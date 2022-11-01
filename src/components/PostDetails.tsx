@@ -93,9 +93,9 @@ const PostDetails = () => {
                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                 />
               </svg>
-              <span className="align-middle">{post?.createdAt}</span>
+              <span className="align-middle">{post?.createdAt.slice(0,10)}</span>
             </div>
-            {isLike ? (<AiFillLike onClick={Likehandler} className="h-6 w-6 inline mr-2 ml-3 text-pink-500"/>) :(<AiOutlineLike className="h-6 w-6 inline mr-2 ml-3 text-pink-500" onClick={Likehandler}/> )}
+            {isLike ? (<AiFillLike onClick={Likehandler} className="h-6 w-6 inline mr-2 ml-3 text-pink-500 cursor-pointer"/>) :(<AiOutlineLike className="h-6 w-6 inline mr-2 ml-3 text-pink-500 cursor-pointer" onClick={Likehandler}/> )}
             {likes}
           </div>
           <h1 className="mb-8 text-3xl font-semibold">{post?.title}</h1>

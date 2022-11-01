@@ -54,21 +54,7 @@ const LoginForm = () => {
           name="password"
         />
       </div>
-      <div className="grid grid-cols-1 gap-4 mb-4">
-        <div>
-          <input
-            onChange={() => {}}
-            type="checkbox"
-            id="storeData"
-            name="storeData"
-            value="true"
-          />
-          <label className="text-gray-500 cursor-pointer" htmlFor="storeData">
-            {" "}
-            Save my name, email in this browser for the next time I comment.
-          </label>
-        </div>
-      </div>
+      
       <div className="grid grid-cols-1 gap-4 mb-4">
         <a href="/signup">
           <span className="text-gray-500 cursor-pointer hover:underline">
