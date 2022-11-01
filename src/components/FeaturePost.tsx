@@ -91,7 +91,9 @@ const FeaturePost = () => {
           itemClass="px-4"
         >
           {topPosts.map((post: IPost) => (
-            <FeaturePostCard key={post.id} post={post} />
+            <a href={`/post/${post.id}`}>
+              <FeaturePostCard key={post.id} post={post} />
+            </a>
           ))}
         </Carousel>
       ) : (
