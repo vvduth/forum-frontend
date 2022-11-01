@@ -40,7 +40,8 @@ export const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
     fetchAllPost();
     fetchTopPosts() ; 
     console.log(allPost);
-  }, [allPost, userProfile]);
+    console.log(userProfile) ;
+  }, [ userProfile]);
 
   return (
     <StateContext.Provider value={{ allPost, setAllPosts , topPosts}}>

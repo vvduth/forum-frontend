@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
   const [userName, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [noti, setNoti] = useState<string | null>() ; 
   const navigate = useNavigate() ;
   const { addUser } = useAuthStore();
 
@@ -16,16 +17,24 @@ const LoginForm = () => {
         "Content-Type": "application/json",
       },
     };
-    const response = await axios.post(
-      `https://tamk-fullstack-project-backend.herokuapp.com/api/auth/signin`,
-      { username: userName, password },
-      config as any
-    );
-    console.log(response.data);
-    const fullProfile = {name: userName , token : response.data}
+    setNoti("Logging user in")
+    try {
+      const response = await axios.post(
+        `https://tamk-fullstack-project-backend.herokuapp.com/api/auth/signin`,
+        { username: userName, password },
+        config as any
+      );
+      console.log(response.data);
+      const fullProfile = {name: userName , token : response.data}
 
-    addUser(fullProfile);
-    navigate("/", {replace: true})
+        
+      addUser(fullProfile);
+      navigate("/", {replace: true})
+      setNoti(null) ;
+    } catch (e) {
+      console.log(e) ; 
+      setNoti("Sorry username or password is incorrect, please try again")
+    }
   };
 
   return (
@@ -56,6 +65,11 @@ const LoginForm = () => {
       </div>
       
       <div className="grid grid-cols-1 gap-4 mb-4">
+        {noti ? (
+          <span className="text-gray-500 cursor-pointer hover:underline">
+          {noti}
+        </span>
+        ): (<></>)}
         <a href="/signup">
           <span className="text-gray-500 cursor-pointer hover:underline">
             New to these stuff? Create new account
