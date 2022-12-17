@@ -373,3 +373,5 @@ export const sendComment = async (token: any, postId: any, message: any) => {
 
   return result;
 };
+
+// so there are 2 param , the first the amount of poost per age and then the page

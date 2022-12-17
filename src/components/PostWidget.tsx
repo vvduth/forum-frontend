@@ -10,8 +10,8 @@ const PostWidget = () => {
         <h3 className='text-xl mb-8 font-semibold border-b border-blue-500 pb-4' >
             Recent Posts
         </h3>
-        {topPosts.slice(0,3).map((post: IPost) => (
-           <a href={`/post/${post.id}`}>
+        {topPosts.slice(0,3).map((post: IPost, index: number) => (
+           <a key={index} href={`/post/${post.id}`}>
              <div key={post.id} className="flex items-center w-full mb-4">
                 <div className='w-16 flex-none'>
                     <img 

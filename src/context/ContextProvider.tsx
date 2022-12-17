@@ -30,7 +30,7 @@ export const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
       const { token } = userProfile as any;
       const res = (await getPosts(token)) as any;
       setAllPosts(res.getAllPosts);
-      console.log(res);
+      console.log(res.getAllPosts.length);
     } catch (e) {
       console.log(e);
     }
@@ -39,8 +39,6 @@ export const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     fetchAllPost();
     fetchTopPosts() ; 
-    console.log(allPost);
-    console.log(userProfile) ;
   }, [ userProfile]);
 
   return (

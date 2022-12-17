@@ -3,7 +3,7 @@ import create from "zustand";
 import {persist} from "zustand/middleware" 
 import axios from 'axios' ; 
 
-const BASE_URL = ""; 
+const BASE_URL = "https://tamk-fullstack-project-backend.herokuapp.com/api/auth/signin"; 
 
 const authStore = (set: any) => ({
     userProfile: null  , 

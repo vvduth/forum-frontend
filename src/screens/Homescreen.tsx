@@ -9,10 +9,8 @@ import { Route } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import { getPostsByUsername, sendLike, unLike } from "../service";
 import Layout from "../components/Layout";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
+import Pagination from "../components/Pagination";
 import Stack from "@mui/material/Stack";
-import usePagination from "../hook/usePagination";
 import { useStateContext } from "../context/ContextProvider";
 
 
@@ -35,6 +33,7 @@ const Homescreen = () => {
           
         </>
       )}
+      <Pagination />
     </Layout>
   );
 };
