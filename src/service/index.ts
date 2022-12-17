@@ -46,7 +46,7 @@ export const getPosts = async (token: any) => {
 };
 
 
-export const getPostsWithPagination = async (token: any) => {
+export const getPostsWithPagination = async (token: any, page: any) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -55,14 +55,14 @@ export const getPostsWithPagination = async (token: any) => {
 
   const graphQLClient = new GraphQLClient(graphqlAPI, config);
   const query = gql`
-    query {
-      getAllPosts(amount: 5) {
-        id
-        title
-        message
-        category
-        createdAt
-        user {
+    query postByUsername($page: Int!) {
+      getAllPosts(amount: 5, page: $page) {
+         id
+         title
+         message
+         category
+         createdAt
+         user {
           id
           username
           email
@@ -83,8 +83,38 @@ export const getPostsWithPagination = async (token: any) => {
         numComments
       }
     }
-  `;
-  const result = await graphQLClient.request(query);
+  `
+  // const query = gql`
+  //   query {
+  //     getAllPosts(amount: 5, page: $page) {
+  //       id
+  //       title
+  //       message
+  //       category
+  //       createdAt
+  //       user {
+  //         id
+  //         username
+  //         email
+  //       }
+  //       comments {
+  //         message
+  //         user {
+  //           username
+  //         }
+  //         createdAt
+  //       }
+  //       likes {
+  //         id
+  //         username
+  //         email
+  //       }
+  //       numLikes
+  //       numComments
+  //     }
+  //   }
+  // `;
+  const result = await graphQLClient.request(query, {page});
 
   return result;
 };

@@ -18,16 +18,14 @@ let PageSize = 5;
 
 const Homescreen = () => {
   const { userProfile } = useAuthStore();
-  const {allPost, setAllPosts} = useStateContext() as any ;
+  const {allPost, setAllPosts, postsWithPagination, currentPage} = useStateContext() as any ;
 
+  
   return (
     <Layout>
-      {/* <button onClick={likePost}>Send Like </button>
-      <button onClick={unLikePost}>UnLike </button> */}
-      {allPost && <></>}
-      {allPost && (
+      {postsWithPagination && (
         <>
-          {allPost.map((post: any) => (
+          {postsWithPagination.map((post: any) => (
             <PostCard key={post.id} post={post} />
           ))}
           
